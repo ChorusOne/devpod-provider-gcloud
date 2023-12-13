@@ -78,6 +78,9 @@ func buildInstance(options *options.Options) (*computepb.Instance, error) {
 		serviceAccounts = []*computepb.ServiceAccount{
 			{
 				Email: &options.ServiceAccount,
+				Scopes: []string{
+					"https://www.googleapis.com/auth/cloud-platform",
+				},
 			},
 		}
 	}
