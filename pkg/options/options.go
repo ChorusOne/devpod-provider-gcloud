@@ -17,6 +17,9 @@ type Options struct {
 	DiskSize    string
 	DiskImage   string
 	MachineType string
+
+	// Optional
+	ServiceAccount string
 }
 
 func FromEnv(withMachine bool) (*Options, error) {
@@ -54,6 +57,10 @@ func FromEnv(withMachine bool) (*Options, error) {
 		return nil, err
 	}
 	retOptions.MachineType, err = fromEnvOrError("MACHINE_TYPE")
+	if err != nil {
+		return nil, err
+	}
+	retOptions.ServiceAccount, err = fromEnvOrError("SERVICE_ACCOUNT")
 	if err != nil {
 		return nil, err
 	}
